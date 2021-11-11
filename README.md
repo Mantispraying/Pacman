@@ -1,2 +1,2 @@
 # Pacman
-Pacman game made using javascript
+Pacman game made using vanilla javascript, css and html
