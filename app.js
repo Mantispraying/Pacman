@@ -80,22 +80,22 @@ document.addEventListener('DOMContentLoaded', () => {
     switch (e.keyCode) {
       //Left
       case 37:
-        if (pacmanCurrentIndex % width !== 0)
+        if (pacmanCurrentIndex % width !== 0 && !squares[pacmanCurrentIndex - 1].classList.contains('wall'))
           pacmanCurrentIndex -= 1
         break
       //Up
       case 38:
-        if (pacmanCurrentIndex - width > 0)
+        if (pacmanCurrentIndex - width > 0 && !squares[pacmanCurrentIndex - width].classList.contains('wall'))
           pacmanCurrentIndex -= width
         break
       //Right
       case 39:
-        if (pacmanCurrentIndex % width < width - 1)
+        if (pacmanCurrentIndex % width < width - 1 && !squares[pacmanCurrentIndex + 1].classList.contains('wall'))
           pacmanCurrentIndex += 1
         break
       //Down
       case 40:
-        if (pacmanCurrentIndex + width < width * width)
+        if (pacmanCurrentIndex + width < width * width && !squares[pacmanCurrentIndex + width].classList.contains('wall'))
           pacmanCurrentIndex += width
         break
     }
