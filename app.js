@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function checkForWin() {
     if (score === 274) {
       ghost.forEach(ghost => clearInterval(ghost.timerId))
-      document, removeEventListener('keyup', movePacman)
+      document.removeEventListener('keyup', movePacman)
       scoreDisplay.innerHTML = "YOU WIN!"
     }
   }
