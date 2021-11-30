@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector('.grid')
   const scoreDisplay = document.getElementById('score')
   const width = 28 //28x28 = 784 squares
+  let score = 0
 
   //layout of grid and what is in the squares
   const layout = [
@@ -111,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         break
-        
+
       //Down
       case 40:
         if (pacmanCurrentIndex + width < width * width && !squares[pacmanCurrentIndex + width].classList.contains('wall') && !squares[pacmanCurrentIndex + width].classList.contains('ghost-lair'))
@@ -121,11 +122,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     squares[pacmanCurrentIndex].classList.add('pac-man')
 
-    //pacDotEaten()
+    pacDotEaten()
     //powerPalletEaten()
     //checkForGameOver()
     //checkForWin()
 
   }
+
   document.addEventListener('keyup', movePacman)
+
+  //What happens when pac-man eats a pac-dot
+
+  function pacDotEaten() {
+    if (squares[pacmanCurrentIndex].classList.contains('pac-dot')) {
+      score++
+      scoreDisplay.innerHTML = score
+      squares[pacmanCurrentIndex].classList.remove('pac-dot')
+    }
+  }
 })
