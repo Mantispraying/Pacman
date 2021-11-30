@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3 - power-pellet
   // 4 - empty
 
-  // Draw the grid and render it
+  //Draw the grid and render it
 
   function createBoard() {
     for (let i = 0; i < layout.length; i++) {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
       grid.appendChild(square)
       squares.push(square)
 
-      // add layout to the board
+      //add layout to the board
 
       if (layout[i] === 0) {
         squares[i].classList.add('pac-dot')
@@ -70,32 +70,48 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   createBoard()
 
-  // Starting position of pac-man
+  //Starting position of pac-man
 
   let pacmanCurrentIndex = 490
 
   squares[pacmanCurrentIndex].classList.add('pac-man')
 
-  // Move pac-man
+  //Move pac-man
   function movePacman(e) {
     squares[pacmanCurrentIndex].classList.remove('pac-man')
 
     switch (e.keyCode) {
+
       //Left
       case 37:
         if (pacmanCurrentIndex % width !== 0 && !squares[pacmanCurrentIndex - 1].classList.contains('wall') && !squares[pacmanCurrentIndex - 1].classList.contains('ghost-lair'))
           pacmanCurrentIndex -= 1
+
+        //Check if pac-man is in the left exit
+        if (pacmanCurrentIndex - 1 === 363) {
+          pacmanCurrentIndex = 391
+        }
+
         break
+
       //Up
       case 38:
         if (pacmanCurrentIndex - width > 0 && !squares[pacmanCurrentIndex - width].classList.contains('wall') && !squares[pacmanCurrentIndex - width].classList.contains('ghost-lair'))
           pacmanCurrentIndex -= width
         break
+
       //Right
       case 39:
         if (pacmanCurrentIndex % width < width - 1 && !squares[pacmanCurrentIndex + 1].classList.contains('wall') && !squares[pacmanCurrentIndex + 1].classList.contains('ghost-lair'))
           pacmanCurrentIndex += 1
+
+        //Check if pac-man is in the right exit
+        if (pacmanCurrentIndex + 1 === 392) {
+          pacmanCurrentIndex = 364
+        }
+
         break
+        
       //Down
       case 40:
         if (pacmanCurrentIndex + width < width * width && !squares[pacmanCurrentIndex + width].classList.contains('wall') && !squares[pacmanCurrentIndex + width].classList.contains('ghost-lair'))
